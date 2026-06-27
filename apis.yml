@@ -26,7 +26,7 @@ common:
     url: https://www.linkedin.com/company/hyatt
   - type: Website
     url: https://www.hyatt.com/
-  - type: CorporateWebsite
+  - type: Website
     url: https://about.hyatt.com/
 maintainers:
   - FN: Kin Lane
