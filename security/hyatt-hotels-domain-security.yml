@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.hyatt.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 28 23:59:59 2026 GMT
+  hsts: null
+- host: about.hyatt.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 28 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: hyatt.com
+  dnssec: false
+  caa:
+  - 0 issuewild "sectigo.com"
+  - 0 issue "digicert.com"
+  - 0 iodef "mailto:security@hyatt.com"
+  - 0 issue "sectigo.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
