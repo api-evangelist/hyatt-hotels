@@ -1,0 +1,239 @@
+generated: '2026-09-13'
+method: probed
+source: >-
+  Live unauthenticated probes of the /.well-known/ discovery surface on every host this
+  record knows, 2026-09-13: the registrable domain and its brand hosts (www.hyatt.com,
+  about.hyatt.com, world.hyatt.com), the corporate hosts (newsroom.hyatt.com,
+  investors.hyatt.com, careers.hyatt.com), the partner/owner portals (hyattconnect.com,
+  hyattdevelopment.com) and the API gateway (apigw.hyatt.com, the CNAME target of
+  api.hyatt.com). Sixteen named paths per host plus a negative control on each.
+summary:
+  hosts_probed: 9
+  documents_found: 0
+  hit_count: 0
+  note: >-
+    Hyatt Hotels publishes no /.well-known/ discovery document on any host reachable to an
+    anonymous client. No security.txt, no OIDC/OAuth discovery, no api-catalog, no
+    ai-plugin, no apis.json, no AAuth resource, no A2A agent card. NO WellKnown and NO
+    SecurityTxt pointer is wired in apis.yml, because nothing is present — this file
+    records the probe, it does not credit a surface.
+bot_challenge_warning: >-
+  The three customer-facing hyatt.com hosts (www, about, world) are behind an edge bot
+  challenge that answers HTTP 403 with a branded multilingual interstitial ("We're sorry.
+  Your browser did something unexpected", Hyatt error code E6020, 12,857 bytes) for EVERY
+  path including / and /robots.txt. A full browser header set escalates to HTTP 429. These
+  403s are our crawler being turned away, not evidence that Hyatt does or does not serve a
+  document at these paths; they are recorded as unknown, never as a hit.
+path_echo_controls:
+  - host: https://investors.hyatt.com
+    result: failed
+    note: >-
+      Q4 Inc investor-relations platform answers HTTP 200 with an 11-byte body "Invalid key"
+      for every /.well-known/* path INCLUDING the negative control
+      /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, which cannot exist. Every
+      200 on this host is therefore discarded.
+  - host: https://careers.hyatt.com
+    result: partial
+    note: >-
+      Phenom People careers SPA answers HTTP 200 with a 4,677-byte HTML shell (identical to
+      the site homepage) for four paths — openid-configuration, oauth-authorization-server,
+      oauth-protected-resource and api-catalog — while the negative control correctly 404s.
+      Those four 200s are SPA catch-all soft-404s, not documents; they are recorded with a
+      soft-404 verdict and earn nothing.
+  - host: https://apigw.hyatt.com
+    result: passed
+    note: negative control returned HTTP 404 with a zero-byte body, same as every named path
+  - host: https://hyattconnect.com
+    result: passed
+    note: negative control returned HTTP 404
+  - host: https://hyattdevelopment.com
+    result: passed
+    note: negative control returned HTTP 404
+  - host: https://newsroom.hyatt.com
+    result: passed
+    note: negative control returned HTTP 404
+hosts:
+  - host: https://www.hyatt.com
+    catch_all: bot-challenge-403
+    control_probe:
+      path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json
+      status: 403
+      verdict: bot challenge (Akamai E6020 interstitial) — indistinguishable from every other path
+    documents:
+      - {path: /.well-known/security.txt, status: 403, verdict: bot-challenge (unknown, not a hit)}
+      - {path: /.well-known/openid-configuration, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/oauth-authorization-server, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/oauth-protected-resource, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/api-catalog, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/ai-plugin.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/ucp.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/acp.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/aauth-resource.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/apis.json, status: 403, verdict: bot-challenge}
+      - {path: /apis.json, status: 403, verdict: bot-challenge}
+      - {path: /apis.yml, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/agent-card.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/agent.json, status: 403, verdict: bot-challenge}
+      - {path: /llms.txt, status: 403, verdict: bot-challenge}
+  - host: https://about.hyatt.com
+    catch_all: bot-challenge-403
+    control_probe: {path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, status: 403}
+    documents:
+      - {path: /.well-known/security.txt, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/openid-configuration, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/oauth-authorization-server, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/oauth-protected-resource, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/api-catalog, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/ai-plugin.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/ucp.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/acp.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/aauth-resource.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/apis.json, status: 403, verdict: bot-challenge}
+      - {path: /apis.json, status: 403, verdict: bot-challenge}
+      - {path: /apis.yml, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/agent-card.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/agent.json, status: 403, verdict: bot-challenge}
+      - {path: /llms.txt, status: 403, verdict: bot-challenge}
+  - host: https://world.hyatt.com
+    catch_all: bot-challenge-403
+    control_probe: {path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, status: 403}
+    documents:
+      - {path: /.well-known/security.txt, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/openid-configuration, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/oauth-authorization-server, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/oauth-protected-resource, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/api-catalog, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/ai-plugin.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/ucp.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/acp.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/aauth-resource.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/apis.json, status: 403, verdict: bot-challenge}
+      - {path: /apis.json, status: 403, verdict: bot-challenge}
+      - {path: /apis.yml, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/agent-card.json, status: 403, verdict: bot-challenge}
+      - {path: /.well-known/agent.json, status: 403, verdict: bot-challenge}
+      - {path: /llms.txt, status: 403, verdict: bot-challenge}
+  - host: https://apigw.hyatt.com
+    catch_all: none
+    note: >-
+      The Hyatt API gateway (Google Cloud edge, "via: 1.1 google"); api.hyatt.com is a CNAME
+      to this host but refuses the TLS handshake outright (curl exit 35/56). Every path
+      answers a bare HTTP 404 with content-length 0 — a real gateway with no public
+      discovery surface.
+    control_probe: {path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, status: 404}
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://careers.hyatt.com
+    catch_all: spa-html-200 (partial)
+    control_probe: {path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, status: 404}
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 200, verdict: soft-404 (4,677-byte HTML SPA shell, rejected)}
+      - {path: /.well-known/oauth-authorization-server, status: 200, verdict: soft-404 (HTML SPA shell, rejected)}
+      - {path: /.well-known/oauth-protected-resource, status: 200, verdict: soft-404 (HTML SPA shell, rejected)}
+      - {path: /.well-known/api-catalog, status: 200, verdict: soft-404 (HTML SPA shell, rejected)}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://newsroom.hyatt.com
+    catch_all: none
+    control_probe: {path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, status: 404}
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://investors.hyatt.com
+    catch_all: path-echo-200
+    control_probe:
+      path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json
+      status: 200
+      verdict: FAILED — every hit on this host is discarded
+    documents:
+      - {path: /.well-known/security.txt, status: 200, verdict: 'path-echo catch-all ("Invalid key", 11 bytes) — rejected'}
+      - {path: /.well-known/openid-configuration, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/oauth-authorization-server, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/oauth-protected-resource, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/api-catalog, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/ai-plugin.json, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/ucp.json, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/acp.json, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/aauth-resource.json, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/apis.json, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /apis.json, status: 403, verdict: Cloudflare challenge}
+      - {path: /apis.yml, status: 403, verdict: Cloudflare challenge}
+      - {path: /.well-known/agent-card.json, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /.well-known/agent.json, status: 200, verdict: path-echo catch-all — rejected}
+      - {path: /llms.txt, status: 404}
+  - host: https://hyattconnect.com
+    catch_all: none
+    note: Hyatt's owner/colleague portal — a React SPA login shell; all discovery paths 404.
+    control_probe: {path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, status: 404}
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://hyattdevelopment.com
+    catch_all: none
+    note: '"Hyatt Resource Portal" — a Vite/React SPA for hotel development partners; all discovery paths 404.'
+    control_probe: {path: /.well-known/hyatt-hotels-negative-control-7f3ab91c.json, status: 404}
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}

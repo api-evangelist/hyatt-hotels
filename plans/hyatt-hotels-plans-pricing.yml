@@ -1,0 +1,32 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  Search for a Hyatt developer/API pricing or plans surface on 2026-09-13, plus DNS checks
+  of every plausible developer host and probes of the API gateway.
+plan_count: 0
+plans: []
+pricing_model: no-api-product
+evidence:
+  - url: https://apigw.hyatt.com/
+    status: 404
+    note: >-
+      Hyatt's API gateway answers a bare 404 with a zero-byte body on every path; there is no
+      portal, plan catalogue or self-serve signup behind it.
+  - url: https://www.hyatt.com/development/
+    status: 403
+    note: >-
+      The only page on hyatt.com with "development" in its path is hotel real-estate
+      development, not software; it is also behind the edge bot challenge.
+  - url: https://hyattconnect.com/
+    status: 200
+    note: >-
+      Owner/colleague portal — a React login shell. Access is by employment or ownership
+      relationship, not by a purchasable plan.
+note: >-
+  Hyatt sells hotel stays, not API access. It publishes no developer plans, API tiers, quotas
+  or overage pricing because it publishes no developer program at all: there is no developer
+  portal, no API reference and no self-serve signup on any Hyatt host. Partner connectivity
+  runs through commercial agreements and through third-party platforms (Hapi for event
+  streams and transactional APIs, Sabre SynXis as the central reservation system), whose
+  pricing belongs to those vendors and not to Hyatt. An honest zero — no Pricing pointer is
+  emitted, because there is no API pricing page to point at.

@@ -1,10 +1,19 @@
 aid: hyatt-hotels
 name: Hyatt Hotels
 description: >-
-  Hyatt Hotels Corporation is a global hospitality company managing a portfolio
-  of hotel, resort, and residential brands. This repository tracks public APIs,
-  developer resources, and integration touchpoints associated with Hyatt
-  Hotels.
+  Hyatt Hotels Corporation (NYSE: H) is a Chicago-headquartered global hospitality
+  company that develops, owns, operates, manages, franchises and licenses hotels,
+  resorts, branded residences and vacation-ownership properties across brands
+  including Park Hyatt, Grand Hyatt, Hyatt Regency, Andaz, Alila, Thompson Hotels,
+  Hyatt Centric, Hyatt Place, Hyatt House and Miraval. No Hyatt developer portal, API
+  reference, machine-readable contract or first-party SDK was found on any reachable
+  Hyatt host or in any public registry as of September 2026; api.hyatt.com resolves to
+  a live but undocumented gateway, and hyatt.com sits behind an edge bot challenge no
+  automated client can read. Partner
+  connectivity runs through third parties (Hapi for event streams and transactional
+  APIs, Sabre SynXis for reservations), and Hyatt's conversational surface ships as a
+  Hyatt-branded app inside ChatGPT rather than an endpoint Hyatt hosts. Hyatt has run
+  a public HackerOne bug bounty program since January 2019.
 url: >-
   https://raw.githubusercontent.com/api-evangelist/hyatt-hotels/refs/heads/main/apis.yml
 type: Index
@@ -36,9 +45,12 @@ tags:
   - Hotels
   - Travel
   - Lodging
+  - Resorts
+  - Loyalty
+  - Reservations
   - Fortune 1000
 created: '2026-03-24'
-modified: '2026-04-28'
+modified: '2026-09-13'
 specificationVersion: '0.23'
 apis: []
 common:
@@ -52,8 +64,66 @@ common:
     url: https://www.hyatt.com/
   - type: Website
     url: https://about.hyatt.com/
+  - type: VulnerabilityDisclosure
+    url: security/hyatt-hotels-vulnerability-disclosure.yml
+  - type: Security
+    url: https://hackerone.com/hyatt
+  - type: LLMsTxt
+    url: llms/hyatt-hotels-llms.txt
+  - type: Packages
+    url: packages/hyatt-hotels-packages.yml
+  - type: Plans
+    url: plans/hyatt-hotels-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/hyatt-hotels-rate-limits.yml
+  - type: Newsroom
+    url: https://newsroom.hyatt.com/
+  - type: Careers
+    url: https://careers.hyatt.com/
+  - type: InvestorRelations
+    url: https://investors.hyatt.com/overview/default.aspx
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 x-parent: hyatt
 x-relationship: product
+x-enrichment:
+  date: '2026-09-13'
+  status: minimal
+  artifacts_added: 6
+  pass: local-v3
+x-coverage:
+  state: blocked
+  reason: bot-challenge
+  detail: >-
+    Every customer-facing hyatt.com host (www, about, world) sits behind an Akamai bot
+    challenge that answers HTTP 403 with Hyatt's own branded multilingual interstitial and
+    error code E6020 for EVERY path — the homepage and /robots.txt included — and escalates
+    to HTTP 429 when sent a full browser header set, so not one page of Hyatt's own site
+    could be read to confirm or rule out a developer program; everything reachable around it
+    (apigw.hyatt.com answering bare zero-byte 404s, no developer.* / apis.* / partner*.hyatt.com
+    in DNS, 0 public repos in github.com/hyatt, no Hyatt package in npm/PyPI/RubyGems/crates/NuGet)
+    points at no public API surface, but that finding is not asserted publicly because the
+    authoritative source for it was unreadable.
+  evidence:
+    - url: https://www.hyatt.com/
+      status: 403
+    - url: https://www.hyatt.com/robots.txt
+      status: 403
+    - url: https://about.hyatt.com/
+      status: 403
+    - url: https://world.hyatt.com/.well-known/agent-card.json
+      status: 403
+    - url: https://apigw.hyatt.com/openapi.json
+      status: 404
+    - url: https://apigw.hyatt.com/.well-known/api-catalog
+      status: 404
+    - url: https://hyattconnect.com/.well-known/security.txt
+      status: 404
+    - url: https://hyattdevelopment.com/llms.txt
+      status: 404
+    - url: https://newsroom.hyatt.com/hackerone-bug-bounty
+      status: 200
+    - url: https://hackerone.com/hyatt
+      status: 200
+  checked: '2026-09-13'

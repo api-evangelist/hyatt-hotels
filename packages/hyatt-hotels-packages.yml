@@ -1,0 +1,78 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  Unauthenticated registry searches on 2026-09-13 across npm, PyPI, RubyGems, crates.io and
+  NuGet, plus DNS resolution of every plausible Hyatt developer host and a read of the
+  github.com/hyatt organization via the GitHub API.
+package_count: 0
+official_package_count: 0
+packages: []
+registries_searched:
+  - registry: npm
+    query: https://registry.npmjs.org/-/v1/search?text=hyatt&size=20
+    result: >-
+      20 results, none first-party. Nearest matches are third-party: `hyatt` (v0.0.0,
+      published 2015-01-30, "starwood hotels price fetcher", publisher `turing`),
+      `stayexpert-haytt` (v0.0.1, 2015-06-14, publisher `turing`), and
+      `@striderlabs/mcp-hyatt` (v1.0.1, 2026-06-17, "MCP server connector for Hyatt Hotels
+      using Playwright browser automation", publisher `markswendsen`). The remainder are
+      unrelated template repos that happen to carry a personal surname.
+  - registry: pypi
+    query: https://pypi.org/pypi/hyatt/json
+    status: 404
+    result: no project named hyatt
+  - registry: rubygems
+    query: https://rubygems.org/api/v1/search.json?query=hyatt
+    result: only unrelated gems (hyatt_view_tool, homepage josephhyatt.com)
+  - registry: crates.io
+    query: https://crates.io/api/v1/crates?q=hyatt
+    result: no matching crate (results are hyphen-fuzzy matches such as rustygal, prodigal)
+  - registry: nuget
+    query: https://azuresearch-usnc.nuget.org/query?q=hyatt&take=10
+    result: empty
+  - registry: packagist
+    result: not probed — no PHP client is referenced from any Hyatt surface
+  - registry: pkg.go.dev
+    result: not probed as a search index; no Go module referenced from any Hyatt surface
+  - registry: maven-central
+    result: no Hyatt coordinate referenced from any Hyatt surface
+third_party_only:
+  - name: '@striderlabs/mcp-hyatt'
+    registry: npm
+    version: 1.0.1
+    published: '2026-06-17'
+    url: https://www.npmjs.com/package/@striderlabs/mcp-hyatt
+    official: false
+    note: >-
+      A third-party MCP server that drives hyatt.com through Playwright browser automation.
+      It is a scraper built on top of the consumer website by an unrelated publisher, not a
+      Hyatt-published client library, and it is NOT counted toward Hyatt's SDK or MCP
+      posture.
+  - name: hyatt
+    registry: npm
+    version: 0.0.0
+    published: '2015-01-30'
+    url: https://www.npmjs.com/package/hyatt
+    official: false
+    note: Abandoned 2015 price-scraping experiment by an unrelated publisher.
+  - name: stayexpert-haytt
+    registry: npm
+    version: 0.0.1
+    published: '2015-06-14'
+    url: https://www.npmjs.com/package/stayexpert-haytt
+    official: false
+    note: Abandoned 2015 price fetcher by an unrelated publisher (github.com/StayExpert/hyatt).
+github:
+  org: https://github.com/hyatt
+  owner_name: Hyatt Hotels Corporation
+  created: '2014-12-01'
+  public_repos: 0
+  note: >-
+    The org is genuinely Hyatt's (name "Hyatt Hotels Corporation", blog http://www.hyatt.com)
+    but carries zero public repositories, so there is nothing to mine for a package.
+note: >-
+  Hyatt Hotels publishes no first-party client library in any public package registry, and
+  no Hyatt host links to an SDK, client library or CLI. developer.hyatt.com,
+  developers.hyatt.com, apis.hyatt.com, partner(s).hyatt.com and devportal.hyatt.com do not
+  resolve in DNS at all. This is a measured zero, not an unchecked field — no SDKs pointer
+  is emitted.

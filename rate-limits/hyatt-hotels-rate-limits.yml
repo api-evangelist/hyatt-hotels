@@ -1,0 +1,31 @@
+generated: '2026-09-13'
+method: probed
+source: >-
+  Anonymous response-header inspection of every reachable Hyatt host on 2026-09-13, plus a
+  search for any published limit on Hyatt's public surface.
+limit_count: 0
+limits: []
+response_headers: []
+exhaustion_status: null
+evidence:
+  - url: https://apigw.hyatt.com/
+    status: 404
+    note: >-
+      The gateway returns a zero-byte 404 carrying only date, via and alt-svc — no
+      X-RateLimit-*, no RateLimit-*, no Retry-After. No runtime rate-limit signal is
+      observable without credentials.
+  - url: https://api.hyatt.com/
+    status: null
+    note: >-
+      CNAME to apigw.hyatt.com but refuses the TLS handshake outright (curl exit 35/56), so no
+      headers can be observed at all.
+  - url: https://www.hyatt.com/
+    status: 403
+    note: >-
+      Edge bot challenge (Hyatt error E6020). With a full browser header set the same host
+      answers HTTP 429 — evidence of an edge request-rate control, but it is a WAF response to
+      our crawler, not a documented API rate-limit contract, and it is not counted as one.
+note: >-
+  Hyatt documents no API rate limits anywhere on its public surface — there is no developer
+  portal, no API reference and no published contract in which limits could be stated — and no
+  reachable Hyatt host emits a rate-limit header to an anonymous caller. An honest zero.
