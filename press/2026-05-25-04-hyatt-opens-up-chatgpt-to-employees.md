@@ -1,7 +1,9 @@
 ---
 title: Hyatt opens up ChatGPT to employees
 url: https://www.phocuswire.com/news/technology/hyatt-chatgpt-enterprise
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Hyatt Hotels" press release artificial intelligence'
 position: 4
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: Bullish Hoplamazian talks AI, 2026 pace, more
 url: https://www.hotelinvestmenttoday.com/Financials/C-Corps/Bullish-Hoplamazian-talks-AI-2026-pace-more
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Hyatt Hotels" press release artificial intelligence'
 position: 1
 source: serpapi-google
