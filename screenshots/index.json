@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "hyatt-hotels",
+    "captured_at": "2026-10-11T190449",
+    "source_url": "https://www.hyatt.com/",
+    "source_type": "Website",
+    "file": "hyatt-hotels-2026-10-11T190449.png",
+    "bytes": 4714,
+    "capture": "playwright-local"
+  }
+]
